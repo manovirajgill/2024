@@ -1,0 +1,90 @@
+<html>
+<head>
+  <style>
+    /* Use CSS variables to store the colors */
+    :root {
+      --bg-color: #1f1f1f; /* Use a light gray color as the background */
+      --text-color: #f0edff; /* Use a dark gray color as the text color */
+      --timer-color: #f8f5f1; /* Use an orange color as the timer color */
+    }
+
+    body {
+      background: var(--bg-color); /* Use the background color */
+      color: var(--text-color); /* Use the text color */
+      font-family: "Roboto", sans-serif; /* Use a modern font */
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 5em;
+      margin-top: 100px;
+    }
+
+    p {
+      font-size: 3em;
+      color: var(--timer-color); /* Use the timer color */
+    }
+
+    /* Use media queries to adjust the font size for smaller screens */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3em;
+      }
+
+      p {
+        font-size: 2em;
+      }
+    }
+
+    /* Add some icons or images to make the website more engaging and fun */
+    .icon {
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Add an icon of a clock before the title -->
+  <!-- I got this icon from [Clock Icons & Symbols - Flaticon](https://www.flaticon.com/free-icons/clock) -->
+  <img src="time-quarter-past.png" alt="Clock" class="icon">
+  <h1>Countdown to 2024</h1>
+  <p id="timer"></p>
+  <script>
+    // Get the current date and time
+    var now = new Date();
+
+    // Get the date and time of the end of 2023
+    var end = new Date("2024-01-01T00:00:00");
+
+    // Calculate the difference in seconds
+    var diff = Math.floor((end - now) / 1000);
+
+    // Update the timer every second
+    var timer = document.getElementById("timer");
+    var interval = setInterval(function() {
+      // Display the remaining seconds
+      timer.innerHTML = diff + " seconds left";
+
+      // Decrease the difference by one
+      diff--;
+
+      // Stop the interval when the difference reaches zero
+      if (diff < 0) {
+        clearInterval(interval);
+        timer.innerHTML = "Happy New Year!";
+        // Add an icon of a fireworks after the timer reaches zero
+        // I got this icon from [Fireworks Icons - Free Download, PNG and SVG](https://icons8.com/icons/set/clock)
+        var fireworks = document.createElement("img");
+        fireworks.src = "https://image.flaticon.com/icons/png/512/189/189664.png";
+        fireworks.alt = "Fireworks";
+        fireworks.className = "icon";
+        document.body.appendChild(fireworks);
+      }
+    }, 1000);
+  </script>
+
+  <!-- Add your name at the bottom -->
+  <footer>Made by Manoviraj Gill</footer>
+</body>
+</html>
